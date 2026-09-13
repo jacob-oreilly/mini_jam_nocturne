@@ -1,6 +1,28 @@
 [gd_scene format=3 uid="uid://dg5nfxweo18f5"]
 
 [ext_resource type="Script" uid="uid://b4qeq3q3omyb1" path="res://game.gd" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://bh51q1ordbam8" path="res://hit.tscn" id="2_e2o6t"]
 
 [node name="game" type="Node2D" unique_id=196909745]
 script = ExtResource("1_80nbo")
+
+[node name="LeftHit" parent="." unique_id=1331506387 instance=ExtResource("2_e2o6t")]
+position = Vector2(300, 200)
+
+[node name="RightHit" parent="." unique_id=2010182807 instance=ExtResource("2_e2o6t")]
+position = Vector2(650, 200)
+
+[node name="NoteSpawnLeft" type="Marker2D" parent="." unique_id=2045222028]
+position = Vector2(300, -10)
+
+[node name="NoteSpawnRight" type="Marker2D" parent="." unique_id=2111739992]
+position = Vector2(650, -10)
+
+[node name="Timer" type="Timer" parent="." unique_id=1783450788]
+autostart = true
+
+[connection signal="body_entered" from="LeftHit" to="." method="_on_left_hit_body_entered"]
+[connection signal="body_exited" from="LeftHit" to="." method="_on_left_hit_body_exited"]
+[connection signal="body_entered" from="RightHit" to="." method="_on_right_hit_body_entered"]
+[connection signal="body_exited" from="RightHit" to="." method="_on_right_hit_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

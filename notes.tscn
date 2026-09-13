@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dv2i18hrx70rx"]
+
+[ext_resource type="Texture2D" uid="uid://1phu21i33o1o" path="res://assets/ballBlue_09.png" id="1_7hqtv"]
+[ext_resource type="Script" uid="uid://cchnbrbv267jv" path="res://notes.gd" id="1_7w2tp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwuq1"]
+
+[node name="notes" type="RigidBody2D" unique_id=1447146807]
+script = ExtResource("1_7w2tp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=912432048]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_7hqtv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1980083904]
+scale = Vector2(4, 4)
+shape = SubResource("CircleShape2D_vwuq1")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=242437926]
+rect = Rect2(-43, -42, 85, 84)
+
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
