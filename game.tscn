@@ -4,15 +4,188 @@
 [ext_resource type="PackedScene" uid="uid://bh51q1ordbam8" path="res://hit.tscn" id="2_e2o6t"]
 [ext_resource type="AudioStream" uid="uid://2gw3oaigcbeg" path="res://assets/game_jam.ogg" id="3_feb5d"]
 [ext_resource type="Texture2D" uid="uid://d3lllpttke5ac" path="res://assets/House_1.jpg" id="4_fc0e3"]
+[ext_resource type="Texture2D" uid="uid://dvisx61t7rmls" path="res://assets/Left_Hand 2.png" id="4_j5wjh"]
+[ext_resource type="Texture2D" uid="uid://hrij4jvewvhl" path="res://assets/Left_Hand.png" id="5_vef74"]
+[ext_resource type="Texture2D" uid="uid://dtop83lap8e3j" path="res://assets/Right_Hand 2.png" id="6_hve3p"]
+[ext_resource type="Texture2D" uid="uid://do31wgmyv6386" path="res://assets/Right_Hand.png" id="7_mfdv2"]
+[ext_resource type="Texture2D" uid="uid://co808642mruqw" path="res://assets/Mini_Candy.png" id="9_vef74"]
+[ext_resource type="Script" uid="uid://bsq0viwqps20i" path="res://mini_candy.gd" id="10_hve3p"]
+[ext_resource type="Texture2D" uid="uid://c0abrp5pdray6" path="res://assets/Regular_Size_Candy.png" id="10_mfdv2"]
+[ext_resource type="Script" uid="uid://b5ou18q5pdd7f" path="res://regular_candy.gd" id="11_iotsf"]
+[ext_resource type="Script" uid="uid://djsi87oixnfwc" path="res://mega_candy.gd" id="12_lc2xo"]
+[ext_resource type="Texture2D" uid="uid://dxutidyrolhxu" path="res://assets/mega_size_candy.png" id="13_215e1"]
+[ext_resource type="Script" uid="uid://cbsa3a4l5sevw" path="res://mini_candy_side.gd" id="15_e8heu"]
+[ext_resource type="Script" uid="uid://d3231pbdjwxph" path="res://regular_candy_side.gd" id="16_rvswv"]
+[ext_resource type="Script" uid="uid://dm651y75kxb1e" path="res://mega_candy_side.gd" id="17_boyg6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_83t07"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_j5wjh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_vef74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j5wjh")
+}],
+"loop": 0,
+"name": &"hit",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_46cuy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_hve3p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_mfdv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hve3p")
+}],
+"loop": 0,
+"name": &"hit",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_riu36"]
+animations = [{
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("9_vef74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vef74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vef74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vef74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vef74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vef74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vef74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vef74")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_vef74")
+}],
+"loop": 0,
+"name": &"fadeInAndOut",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n3xmt"]
+animations = [{
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("10_mfdv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mfdv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mfdv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mfdv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mfdv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mfdv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mfdv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mfdv2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_mfdv2")
+}],
+"loop": 0,
+"name": &"FadeInAndOut",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6j4fn"]
+animations = [{
+"frames": [{
+"duration": 0.2,
+"texture": ExtResource("13_215e1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_215e1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_215e1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_215e1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_215e1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_215e1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_215e1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_215e1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_215e1")
+}],
+"loop": 1,
+"name": &"FadeInAndOut",
+"speed": 20.0
+}]
 
 [node name="game" type="Node2D" unique_id=196909745]
 script = ExtResource("1_80nbo")
 
+[node name="Background" type="Sprite2D" parent="." unique_id=643408799]
+position = Vector2(483, 238)
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("4_fc0e3")
+
 [node name="LeftHit" parent="." unique_id=1331506387 instance=ExtResource("2_e2o6t")]
 position = Vector2(300, 200)
 
+[node name="left_hand_hit" type="AnimatedSprite2D" parent="LeftHit" unique_id=1144271875]
+z_index = 1
+position = Vector2(46, 41)
+scale = Vector2(0.54, 0.54)
+sprite_frames = SubResource("SpriteFrames_83t07")
+animation = &"hit"
+frame_progress = 0.28194448
+
 [node name="RightHit" parent="." unique_id=2010182807 instance=ExtResource("2_e2o6t")]
 position = Vector2(650, 200)
+
+[node name="right_hand_hit" type="AnimatedSprite2D" parent="RightHit" unique_id=128187704]
+z_index = 1
+position = Vector2(-28, 41)
+scale = Vector2(0.54, 0.54)
+sprite_frames = SubResource("SpriteFrames_46cuy")
+animation = &"hit"
+frame_progress = 0.11710662
 
 [node name="NoteSpawnLeft" type="Marker2D" parent="." unique_id=2045222028]
 position = Vector2(300, -10)
@@ -23,11 +196,24 @@ position = Vector2(650, -10)
 [node name="NoteTimer" type="Timer" parent="." unique_id=1783450788]
 autostart = true
 
+[node name="ScoreLabel" type="Label" parent="." unique_id=1417147556]
+modulate = Color(0.8, 0, 0, 1)
+offset_left = 37.0
+offset_top = 3.0
+offset_right = 147.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 32
+text = "Score:"
+uppercase = true
+
 [node name="Score" type="Label" parent="." unique_id=1379229926]
-offset_left = 826.0
-offset_top = 45.0
-offset_right = 866.0
-offset_bottom = 68.0
+offset_left = 153.0
+offset_top = 5.0
+offset_right = 193.0
+offset_bottom = 50.0
+theme_override_font_sizes/font_size = 32
+text = "0"
+vertical_alignment = 1
 
 [node name="Player" type="AudioStreamPlayer" parent="." unique_id=1115003097]
 stream = ExtResource("3_feb5d")
@@ -36,10 +222,55 @@ stream = ExtResource("3_feb5d")
 wait_time = 3.0
 one_shot = true
 
-[node name="Background" type="Sprite2D" parent="." unique_id=643408799]
-position = Vector2(483, 238)
-scale = Vector2(0.67, 0.67)
-texture = ExtResource("4_fc0e3")
+[node name="mini_candy" type="AnimatedSprite2D" parent="." unique_id=1548737345]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(475, 114.000015)
+rotation = 2.4260077
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_riu36")
+animation = &"fadeInAndOut"
+script = ExtResource("10_hve3p")
+
+[node name="regular_candy" type="AnimatedSprite2D" parent="." unique_id=174102817]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(488.99997, 75.000015)
+rotation = 0.74700093
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_n3xmt")
+animation = &"FadeInAndOut"
+script = ExtResource("11_iotsf")
+
+[node name="mega_candy" type="AnimatedSprite2D" parent="." unique_id=1634687522]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(483, 134)
+scale = Vector2(0.12, 0.12)
+sprite_frames = SubResource("SpriteFrames_6j4fn")
+animation = &"FadeInAndOut"
+script = ExtResource("12_lc2xo")
+
+[node name="mini_candy_side" type="AnimatedSprite2D" parent="." unique_id=1112191260]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(121, 75)
+scale = Vector2(0.05, 0.05)
+sprite_frames = SubResource("SpriteFrames_riu36")
+animation = &"fadeInAndOut"
+script = ExtResource("15_e8heu")
+
+[node name="regular_candy_side" type="AnimatedSprite2D" parent="." unique_id=1854823609]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(121, 140)
+scale = Vector2(0.08, 0.08)
+sprite_frames = SubResource("SpriteFrames_n3xmt")
+animation = &"FadeInAndOut"
+script = ExtResource("16_rvswv")
+
+[node name="mega_candy_side" type="AnimatedSprite2D" parent="." unique_id=467713651]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(116.99999, 262)
+scale = Vector2(0.09, 0.09)
+sprite_frames = SubResource("SpriteFrames_6j4fn")
+animation = &"FadeInAndOut"
+script = ExtResource("17_boyg6")
 
 [connection signal="body_entered" from="LeftHit" to="." method="_on_left_hit_body_entered"]
 [connection signal="body_exited" from="LeftHit" to="." method="_on_left_hit_body_exited"]

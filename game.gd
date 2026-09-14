@@ -8,6 +8,14 @@ const note_json = "res://assets/game_jam.json"
 @onready var score: Label = $Score
 @onready var note_timer: Timer = $NoteTimer
 @onready var delay_at_end: Timer = $DelayAtEnd
+@onready var left_hand_hit: AnimatedSprite2D = $LeftHit/left_hand_hit
+@onready var right_hand_hit: AnimatedSprite2D = $RightHit/right_hand_hit
+@onready var mini_candy: AnimatedSprite2D = $mini_candy
+@onready var regular_candy: AnimatedSprite2D = $regular_candy
+@onready var mega_candy: AnimatedSprite2D = $mega_candy
+@onready var mini_candy_side: AnimatedSprite2D = $mini_candy_side
+@onready var regular_candy_side: AnimatedSprite2D = $regular_candy_side
+@onready var mega_candy_side: AnimatedSprite2D = $mega_candy_side
 
 var rng = RandomNumberGenerator.new()
 var leftHitEntered = false;
@@ -25,6 +33,9 @@ var nextMidiNoteTime = 0;
 var time_difference = 0;
 var prev_random_number = 0;
 var scoreMax = 0;
+var mini_candy_recieved = false
+var regular_candy_recieved = false
+var mega_candy_recieved = false
 
 func _init() -> void:
 	songDict = load_json(note_json)
@@ -37,33 +48,26 @@ func _ready() -> void:
 	player.play()
 
 func _process(delta: float) -> void:
-	# Obtain from ticks.
-	var time = (Time.get_ticks_usec() - time_begin) / 1000000.0
-	#print(time)
-	# Compensate for latency.
-	time -= time_delay
-	# May be below 0 (did not begin yet).
-	time = max(0, time)
-	#print("Time is: ", time)
-	if Input.is_action_just_pressed("hit_left"):
-		if leftHitEntered:
-			remove_child(left_note_body)
-			print("left hit")
-			leftHitEntered = false
-			scoreCount += 1
-			update_score(scoreCount)
-		else:
-			print("left miss")
-	if Input.is_action_just_pressed("hit_right"):
-		if rightHitEntered:
-			remove_child(right_note_body)
-			print("right hit")
-			rightHitEntered = false
-			scoreCount += 1
-			update_score(scoreCount)
-		else:
-			print("right miss")
-		
+	candyLevel(scoreCount, scoreMax)
+	if Input.is_action_just_pressed("hit_left") and leftHitEntered:
+		left_hand_hit.play()
+		remove_child(left_note_body)
+		print("left hit")
+		leftHitEntered = false
+		scoreCount += 1
+		update_score(scoreCount)
+	elif not Input.is_action_just_pressed("hit_left") and leftHitEntered:	
+		left_note_body.get_node("NoteAnimation").play()
+
+	if Input.is_action_just_pressed("hit_right") and rightHitEntered:
+		right_hand_hit.play()
+		remove_child(right_note_body)
+		print("right hit")
+		rightHitEntered = false
+		scoreCount += 1
+		update_score(scoreCount)
+	elif not Input.is_action_just_pressed("hit_right") and rightHitEntered:
+		right_note_body.get_node("NoteAnimation").play()
 
 func _on_timer_timeout() -> void:
 	note_timer_set()
@@ -126,9 +130,24 @@ func note_timer_set() -> void:
 		songDictPos += 1
 	else:
 		note_timer.stop()
-		
-	
 
+
+func candyLevel(scoreCount: int, scoreMax: int) -> void: 
+	var mini_candy_score = float(scoreMax * 0.3)
+	var reg_candy_score = float(scoreMax * 0.6)
+	var mega_candy_score = float(scoreMax * 0.9)
+	if mini_candy_score <= scoreCount and not mini_candy_recieved:
+		mini_candy.fade_out_and_in(5.0)
+		mini_candy_side.fade_in(1.0)
+		mini_candy_recieved = true
+	elif reg_candy_score <= scoreCount and not regular_candy_recieved:
+		regular_candy.fade_out_and_in(5.0)
+		regular_candy_side.fade_in(1.0)
+		regular_candy_recieved = true
+	elif mega_candy_score <= scoreCount and not mega_candy_recieved:
+		mega_candy.fade_out_and_in(5.0)
+		mega_candy_side.fade_in(1.0)
+		mega_candy_recieved = true
 func load_json(path: String) -> Dictionary:
 	if not FileAccess.file_exists(path):
 		print("Error: file not found at path: "+path)

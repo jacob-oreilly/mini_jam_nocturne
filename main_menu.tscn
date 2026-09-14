@@ -4,6 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://d3lllpttke5ac" path="res://assets/House_1.jpg" id="2_7vrkn"]
 [ext_resource type="Texture2D" uid="uid://n4o43kljtlmp" path="res://assets/start.png" id="3_fu7sn"]
 [ext_resource type="Texture2D" uid="uid://b31dqx653fjp2" path="res://assets/quit.png" id="4_jix8l"]
+[ext_resource type="Texture2D" uid="uid://csftcpsqmjia1" path="res://assets/start_select.png" id="4_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://dc4vnin7bmruy" path="res://assets/quit_select.png" id="6_qe12f"]
 
 [node name="MainMenu" type="Control" unique_id=273448676]
 layout_mode = 3
@@ -37,21 +39,17 @@ grow_vertical = 2
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("3_fu7sn")
+texture_hover = ExtResource("4_nlkkf")
 ignore_texture_size = true
 stretch_mode = 0
-
-[node name="Play" type="Button" parent="MenuContainer" unique_id=451460047]
-visible = false
-layout_mode = 2
-icon = ExtResource("3_fu7sn")
 
 [node name="Quit" type="TextureButton" parent="MenuContainer" unique_id=1093506544]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("4_jix8l")
+texture_hover = ExtResource("6_qe12f")
 ignore_texture_size = true
 stretch_mode = 0
 
 [connection signal="pressed" from="MenuContainer/Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="MenuContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MenuContainer/Quit" to="." method="_on_quit_pressed"]
