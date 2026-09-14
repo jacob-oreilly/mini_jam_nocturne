@@ -7,8 +7,6 @@ var speed: float = 150.0
 
 func _init() -> void:
 	speed = distance / (60.0 / bpm)
-	#print(distance / speed)
-#func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	

@@ -219,7 +219,7 @@ vertical_alignment = 1
 stream = ExtResource("3_feb5d")
 
 [node name="DelayAtEnd" type="Timer" parent="." unique_id=83714433]
-wait_time = 3.0
+wait_time = 2.0
 one_shot = true
 
 [node name="mini_candy" type="AnimatedSprite2D" parent="." unique_id=1548737345]

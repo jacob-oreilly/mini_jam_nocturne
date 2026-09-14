@@ -28,27 +28,23 @@ anchor_left = 0.5
 anchor_top = 0.652
 anchor_right = 0.5
 anchor_bottom = 0.652
-offset_left = -51.0
+offset_left = -82.0
 offset_top = -102.08002
-offset_right = 49.0
+offset_right = 122.0
 offset_bottom = 101.920715
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Start" type="TextureButton" parent="MenuContainer" unique_id=942038464]
-custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("3_fu7sn")
 texture_hover = ExtResource("4_nlkkf")
-ignore_texture_size = true
 stretch_mode = 0
 
 [node name="Quit" type="TextureButton" parent="MenuContainer" unique_id=1093506544]
-custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 texture_normal = ExtResource("4_jix8l")
 texture_hover = ExtResource("6_qe12f")
-ignore_texture_size = true
 stretch_mode = 0
 
 [connection signal="pressed" from="MenuContainer/Start" to="." method="_on_start_pressed"]

@@ -22,7 +22,7 @@ var leftHitEntered = false;
 var rightHitEntered = false;
 var left_note_body: RigidBody2D = null
 var right_note_body: RigidBody2D = null
-var scoreCount = 0;
+@export var scoreCount = 0;
 var time_begin
 var time_delay
 var song_has_finished = false;
@@ -32,15 +32,14 @@ var currentMidiNoteTime = 0;
 var nextMidiNoteTime = 0;
 var time_difference = 0;
 var prev_random_number = 0;
-var scoreMax = 0;
-var mini_candy_recieved = false
-var regular_candy_recieved = false
-var mega_candy_recieved = false
+@export var scoreMax = 0;
+@export var mini_candy_recieved = false
+@export var regular_candy_recieved = false
+@export var mega_candy_recieved = false
 
 func _init() -> void:
 	songDict = load_json(note_json)
 	scoreMax = songDict.size() - 1
-	#print(songDict)
 
 func _ready() -> void:
 	time_begin = Time.get_ticks_usec()
@@ -52,7 +51,6 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("hit_left") and leftHitEntered:
 		left_hand_hit.play()
 		remove_child(left_note_body)
-		print("left hit")
 		leftHitEntered = false
 		scoreCount += 1
 		update_score(scoreCount)
@@ -62,7 +60,6 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("hit_right") and rightHitEntered:
 		right_hand_hit.play()
 		remove_child(right_note_body)
-		print("right hit")
 		rightHitEntered = false
 		scoreCount += 1
 		update_score(scoreCount)
@@ -110,17 +107,14 @@ func update_score(scoreCount: int) -> void:
 
 func _on_player_finished() -> void:
 	delay_at_end.start()
-	#get_tree().change_scene_to_file("res://game_end.tscn")
+	##get_tree().change_scene_to_file("res://game_end.tscn")
 
 
 func _on_delay_at_end_timeout() -> void:
-	get_tree().change_scene_to_file("res://game_end.tscn")
+	go_to_game_end()
 
 
 func note_timer_set() -> void:
-	print(songDict.size())
-	print(songDictPos - 2)
-	print(songDict.size() > songDictPos - 2)
 	if songDict.size() > songDictPos + 2:
 		currentMidiNoteTime = float(songDict.get(str(songDictPos)))
 		nextMidiNoteTime = float(songDict.get(str(songDictPos + 1)))
@@ -148,6 +142,7 @@ func candyLevel(scoreCount: int, scoreMax: int) -> void:
 		mega_candy.fade_out_and_in(5.0)
 		mega_candy_side.fade_in(1.0)
 		mega_candy_recieved = true
+
 func load_json(path: String) -> Dictionary:
 	if not FileAccess.file_exists(path):
 		print("Error: file not found at path: "+path)
@@ -168,3 +163,11 @@ func load_json(path: String) -> Dictionary:
 	else:
 		print("Error: Parsing JSON failed")
 		return{}
+
+func go_to_game_end():
+	Global.finalScore = scoreCount
+	Global.scoreMax = scoreMax
+	Global.hasMiniCandy = mini_candy_recieved
+	Global.hasRegularCandy = regular_candy_recieved
+	Global.hasMegaCandy = mega_candy_recieved
+	get_tree().change_scene_to_file("res://game_end.tscn")
