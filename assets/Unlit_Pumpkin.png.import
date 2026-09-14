@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ea6yimdwv5j2"
-path="res://.godot/imported/hit.png-edb41de51ccb4edfbe4d81e22ee52fbf.ctex"
+uid="uid://q3rkwyok7xum"
+path="res://.godot/imported/Unlit_Pumpkin.png-8aacac0572d9febcea04224e971fff27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/hit.png"
-dest_files=["res://.godot/imported/hit.png-edb41de51ccb4edfbe4d81e22ee52fbf.ctex"]
+source_file="res://assets/Unlit_Pumpkin.png"
+dest_files=["res://.godot/imported/Unlit_Pumpkin.png-8aacac0572d9febcea04224e971fff27.ctex"]
 
 [params]
 

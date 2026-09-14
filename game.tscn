@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b4qeq3q3omyb1" path="res://game.gd" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://bh51q1ordbam8" path="res://hit.tscn" id="2_e2o6t"]
+[ext_resource type="AudioStream" uid="uid://2gw3oaigcbeg" path="res://assets/game_jam.ogg" id="3_feb5d"]
+[ext_resource type="Texture2D" uid="uid://d3lllpttke5ac" path="res://assets/House_1.jpg" id="4_fc0e3"]
 
 [node name="game" type="Node2D" unique_id=196909745]
 script = ExtResource("1_80nbo")
@@ -18,11 +20,31 @@ position = Vector2(300, -10)
 [node name="NoteSpawnRight" type="Marker2D" parent="." unique_id=2111739992]
 position = Vector2(650, -10)
 
-[node name="Timer" type="Timer" parent="." unique_id=1783450788]
+[node name="NoteTimer" type="Timer" parent="." unique_id=1783450788]
 autostart = true
+
+[node name="Score" type="Label" parent="." unique_id=1379229926]
+offset_left = 826.0
+offset_top = 45.0
+offset_right = 866.0
+offset_bottom = 68.0
+
+[node name="Player" type="AudioStreamPlayer" parent="." unique_id=1115003097]
+stream = ExtResource("3_feb5d")
+
+[node name="DelayAtEnd" type="Timer" parent="." unique_id=83714433]
+wait_time = 3.0
+one_shot = true
+
+[node name="Background" type="Sprite2D" parent="." unique_id=643408799]
+position = Vector2(483, 238)
+scale = Vector2(0.67, 0.67)
+texture = ExtResource("4_fc0e3")
 
 [connection signal="body_entered" from="LeftHit" to="." method="_on_left_hit_body_entered"]
 [connection signal="body_exited" from="LeftHit" to="." method="_on_left_hit_body_exited"]
 [connection signal="body_entered" from="RightHit" to="." method="_on_right_hit_body_entered"]
 [connection signal="body_exited" from="RightHit" to="." method="_on_right_hit_body_exited"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="NoteTimer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="Player" to="." method="_on_player_finished"]
+[connection signal="timeout" from="DelayAtEnd" to="." method="_on_delay_at_end_timeout"]
